@@ -3,8 +3,8 @@
    https://github.com/SebasKoria/itch-theme
 
    itch loads this file from its Custom CSS box with a single line:
-     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@main/zirok.css?v=2);
-   (bump ?v= after each change so browsers skip their cached copy)
+     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.0.1/zirok.css);
+   (after each change: push, tag a new version, and update the version in that line)
 
    It expects these settings in itch's theme editor:
      BG #0b0a14 · Text #f3f1fb · Link #4de3f5 · Font: Chakra Petch
