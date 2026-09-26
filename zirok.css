@@ -1,0 +1,462 @@
+/* =====================================================================
+   zirok.itch.io · Arcade theme
+   https://github.com/SebasKoria/itch-theme
+
+   itch loads this file from its Custom CSS box with a single line:
+     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@main/zirok.css);
+
+   It expects these settings in itch's theme editor:
+     BG #0b0a14 · Text #f3f1fb · Link #4de3f5 · Font: Chakra Petch
+     Background image: stars.png (this file only animates it)
+
+   Everything is scoped to #wrapper, as itch's CSS guide asks.
+   ===================================================================== */
+
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: "Chakra Petch";
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/chakrapetch/v13/cIf6MapbsEk7TDLdtEz1BwkWn6pg.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Chakra Petch";
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeQI51R5_F.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Chakra Petch";
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeJI91R5_F.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Monoton";
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/monoton/v22/5h1aiZUrOngCibe4TkHLQg.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Press Start 2P";
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/pressstart2p/v16/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2) format("woff2");
+}
+
+
+/* ---------- Colors ---------- */
+#wrapper {
+  --z-night: #0b0a14;
+  --z-panel: #16132a;
+  --z-panel-2: #1f1b38;
+  --z-edge: #2c2748;
+  --z-edge-2: #3d3663;
+  --z-txt: #f3f1fb;
+  --z-body: #cdc8e4;
+  --z-dim: #8d87b0;
+  --z-pink: #ff4fb0;
+  --z-cyan: #4de3f5;
+  --z-coin: #ffd54a;
+  --z-pixel: "Press Start 2P", monospace;
+}
+
+
+/* ---------- Starfield: the uploaded stars.png, drifting down ---------- */
+#wrapper { animation: z-stars 50s linear infinite; }
+@keyframes z-stars { to { background-position: 0 400px; } }
+
+
+/* ---------- Neon sign ---------- */
+#wrapper #profile_header { position: relative; }
+/* the purple glow above the name, breathing slowly */
+#wrapper #profile_header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 85% at 50% 0%, rgba(255, 79, 176, .2), rgba(150, 80, 255, .1) 45%, transparent 75%);
+  animation: z-breathe 6s ease-in-out infinite alternate;
+}
+@keyframes z-breathe { from { opacity: .65; } to { opacity: 1; } }
+
+#wrapper .text_header { position: relative; text-align: center; }
+#wrapper .text_header h1 {
+  display: inline-block;
+  margin: 40px 0 0;
+  padding: 14px 34px 6px;
+  font: 400 clamp(40px, 10vw, 112px)/1.1 "Monoton", Impact, sans-serif;
+  letter-spacing: .04em;
+  color: #ffe1f1;
+  text-shadow: 0 0 4px rgba(255, 255, 255, .5), 0 0 14px var(--z-pink), 0 0 36px rgba(255, 79, 176, .55);
+  background: rgba(11, 10, 20, .6);
+  border: 2px solid rgba(255, 79, 176, .7);
+  border-radius: 18px;
+  box-shadow: 0 0 20px rgba(255, 79, 176, .35), inset 0 0 20px rgba(255, 79, 176, .18);
+  animation: z-flicker 9s infinite;
+}
+@keyframes z-flicker {
+  0%, 91%, 93.5%, 96%, 100% { opacity: 1; }
+  92%, 95% { opacity: .55; }
+}
+@keyframes z-blink { 50% { opacity: 0; } }
+
+/* The "Zirok" link under the name repeats the title; the Community button replaces it */
+#wrapper .user_links { display: none; }
+
+
+/* ---------- Intro (your custom HTML) ---------- */
+#wrapper .user_profile { margin: 18px 0 44px; text-align: center; }
+
+#wrapper .custom-coin {
+  margin: 0 0 26px;
+  font: 12px var(--z-pixel);
+  letter-spacing: .25em;
+  color: var(--z-coin);
+  text-shadow: 0 0 10px rgba(255, 213, 74, .6);
+  animation: z-blink 1.2s steps(1) infinite;
+}
+
+#wrapper .custom-hud {
+  display: inline-flex;
+  gap: 32px;
+  margin: 0 0 26px;
+  padding: 14px 26px;
+  background: var(--z-panel);
+  border: 2px solid var(--z-edge);
+  border-radius: 14px;
+  box-shadow: 0 0 26px -8px rgba(77, 227, 245, .45), inset 0 0 18px -10px rgba(77, 227, 245, .5);
+}
+#wrapper .custom-hud p { margin: 0; font: 9px/2.8 var(--z-pixel); letter-spacing: .12em; color: var(--z-dim); }
+#wrapper .custom-hud b { font: 16px var(--z-pixel); color: #fff; letter-spacing: 0; }
+#wrapper .custom-hud :first-child b { color: var(--z-pink); text-shadow: 0 0 10px rgba(255, 79, 176, .7); }
+
+#wrapper .custom-bio {
+  max-width: 40ch;
+  margin: 0 auto 26px;
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--z-body);
+}
+
+/* Arcade buttons: lift + neon glow + a light sweep on hover, sink on click */
+#wrapper .custom-btn {
+  --z-btn: var(--z-pink);
+  --z-btn-edge: #a01f68;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin: 8px;
+  padding: 14px 20px 12px;
+  border-radius: 999px;
+  font: 11px/1.2 var(--z-pixel);
+  letter-spacing: .08em;
+  text-decoration: none;
+  color: #1c0613;
+  background: var(--z-btn);
+  box-shadow: 0 5px 0 var(--z-btn-edge);
+  transition: translate .15s, box-shadow .15s, filter .15s;
+}
+#wrapper .custom-btn.custom-alt { --z-btn: var(--z-cyan); --z-btn-edge: #1a8d9b; color: #04191c; }
+#wrapper .custom-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .6) 50%, transparent 65%);
+  translate: -120% 0;
+  pointer-events: none;
+}
+#wrapper .custom-btn:hover,
+#wrapper .custom-btn:focus-visible {
+  translate: 0 -3px;
+  filter: brightness(1.08);
+  outline: none;
+  box-shadow: 0 8px 0 var(--z-btn-edge), 0 0 26px color-mix(in srgb, var(--z-btn) 70%, transparent);
+}
+#wrapper .custom-btn:hover::after,
+#wrapper .custom-btn:focus-visible::after { animation: z-shine .7s ease-out; }
+#wrapper .custom-btn:active {
+  translate: 0 4px;
+  transition-duration: .05s;
+  box-shadow: 0 1px 0 var(--z-btn-edge), 0 0 14px color-mix(in srgb, var(--z-btn) 60%, transparent);
+}
+@keyframes z-shine { to { translate: 120% 0; } }
+
+
+/* ---------- Game grid ---------- */
+#wrapper .game_column::before {
+  content: "Select game";
+  display: block;
+  margin-bottom: 26px;
+  text-align: center;
+  font: 11px var(--z-pixel);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--z-cyan);
+  text-shadow: 0 0 10px rgba(77, 227, 245, .7);
+  background:
+    linear-gradient(90deg, transparent, var(--z-edge-2)) left center / calc(50% - 130px) 2px no-repeat,
+    linear-gradient(90deg, var(--z-edge-2), transparent) right center / calc(50% - 130px) 2px no-repeat;
+}
+#wrapper .user_game_grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch; /* itch sets "start"; this keeps cards in a row the same height */
+}
+#wrapper .game_cell {
+  --z-accent: var(--z-cyan);
+  position: relative;
+  width: auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 14px;
+  background: var(--z-panel);
+  border: 2px solid var(--z-edge);
+  border-radius: 16px;
+  transition: translate .2s, border-color .2s, box-shadow .2s;
+}
+/* one neon color per game, used on hover and on the genre tag */
+#wrapper .game_cell[data-game_id="2548011"] { --z-accent: #3ddc97; } /* SkyGuard */
+#wrapper .game_cell[data-game_id="3251935"] { --z-accent: #ff5fc4; } /* DinoPet */
+#wrapper .game_cell[data-game_id="1389192"] { --z-accent: #ff9340; } /* Burning Panic! */
+#wrapper .game_cell[data-game_id="3137814"] { --z-accent: #3fd6c6; } /* Pong */
+#wrapper .game_cell[data-game_id="2076921"] { --z-accent: #ff6b5c; } /* TNTsweeper */
+#wrapper .game_cell[data-game_id="2532692"] { --z-accent: #a3ecc2; } /* Thin Ice */
+
+#wrapper .game_cell:hover,
+#wrapper .game_cell:focus-within {
+  translate: 0 -4px;
+  border-color: var(--z-accent);
+  box-shadow:
+    0 0 0 1px var(--z-accent),
+    0 0 28px -6px var(--z-accent),
+    0 18px 36px -18px var(--z-accent);
+}
+
+/* Thumbnails: clean at rest, CRT glitch only on hover */
+#wrapper .game_thumb {
+  position: relative;
+  width: auto;
+  height: auto;
+  aspect-ratio: 315 / 250;
+  overflow: hidden;
+  border-radius: 10px;
+  isolation: isolate;
+}
+#wrapper .game_thumb a { display: block; height: 100%; }
+#wrapper .game_thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+#wrapper .game_thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .25) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0, 0, 0, .55) 100%);
+  opacity: 0;
+  transition: opacity .2s;
+}
+#wrapper .game_thumb::before {
+  content: "Press start";
+  position: absolute;
+  inset: auto 0 14px;
+  z-index: 2;
+  pointer-events: none;
+  text-align: center;
+  font: 11px var(--z-pixel);
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 8px var(--z-accent), 2px 2px 0 #000;
+  opacity: 0;
+}
+#wrapper .game_cell:not(:has(.web_flag)) .game_thumb::before { content: "Download"; }
+#wrapper .game_cell:hover .game_thumb::after,
+#wrapper .game_cell:focus-within .game_thumb::after { opacity: 1; }
+#wrapper .game_cell:hover .game_thumb::before,
+#wrapper .game_cell:focus-within .game_thumb::before { opacity: 1; animation: z-blink .8s steps(1) infinite; }
+#wrapper .game_cell:hover .game_thumb img,
+#wrapper .game_cell:focus-within .game_thumb img { animation: z-glitch .5s steps(1) 1 both; }
+@keyframes z-glitch {
+  0% { translate: 0; }
+  20% { translate: -5px 1px; clip-path: inset(10% 0 55% 0); filter: hue-rotate(-50deg) saturate(2); }
+  40% { translate: 5px -1px; clip-path: inset(58% 0 8% 0); filter: none; }
+  60% { translate: -2px 0; clip-path: inset(28% 0 36% 0); filter: hue-rotate(50deg) saturate(2); }
+  80% { translate: 2px 0; clip-path: inset(0); filter: none; }
+  100% { translate: 0; clip-path: inset(0); filter: brightness(1.08) saturate(1.2); }
+}
+
+/* Title, description, and a bottom row with genre + platforms */
+#wrapper .game_cell_data {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  column-gap: 8px;
+  padding: 14px 4px 0;
+}
+#wrapper .game_author { display: none; }
+#wrapper .game_title,
+#wrapper .game_text { grid-column: 1 / -1; }
+#wrapper .game_title a {
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--z-txt);
+  transition: color .2s, text-shadow .2s;
+}
+/* makes the whole card clickable */
+#wrapper .game_title a::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: 16px; }
+#wrapper .game_title a:focus-visible { outline: none; }
+#wrapper .game_cell:hover .game_title a,
+#wrapper .game_cell:focus-within .game_title a {
+  color: var(--z-accent);
+  text-shadow: 0 0 14px color-mix(in srgb, var(--z-accent) 60%, transparent);
+}
+#wrapper .game_text { margin-top: 6px; font-size: 15.5px; line-height: 1.45; color: var(--z-body); }
+
+#wrapper .game_genre,
+#wrapper .game_platform { place-self: start; margin-top: 14px; }
+#wrapper .game_genre {
+  grid-area: 3 / 1;
+  padding: 2px 11px;
+  border: 2px solid var(--z-accent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--z-accent) 16%, transparent);
+  box-shadow: 0 0 12px -3px color-mix(in srgb, var(--z-accent) 70%, transparent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+#wrapper .game_platform { grid-area: 3 / 2; display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Platform chips: itch's icon + the platform name. Browser games get a "Web" chip. */
+#wrapper .game_platform .icon,
+#wrapper .game_cell:has(.web_flag) .game_platform::before {
+  padding: 2px 8px;
+  border: 2px solid var(--z-edge-2);
+  border-radius: 8px;
+  background: var(--z-panel-2);
+  color: var(--z-body);
+  font-size: 13px;
+}
+#wrapper .game_cell:has(.web_flag) .game_platform::before { content: "Web"; font-weight: 600; }
+#wrapper .game_platform .icon::after { font: 600 13px var(--itchio_font_family), sans-serif; }
+#wrapper .game_platform .icon-android::after { content: " Android"; }
+#wrapper .game_platform .icon-windows8::after { content: " Windows"; }
+#wrapper .game_platform .icon-tux::after { content: " Linux"; }
+#wrapper .game_platform .icon-apple::after { content: " macOS"; }
+/* itch's "Play in browser" tag is replaced by the Web chip */
+#wrapper .game_platform .web_flag { display: none; }
+
+
+/* ---------- SkyGuard featured across the full row ----------
+   To feature another game, change 2548011 to that game's id. */
+#wrapper .game_cell[data-game_id="2548011"] {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  padding: 12px;
+}
+#wrapper .game_cell[data-game_id="2548011"] .game_thumb { grid-column: 1 / span 2; aspect-ratio: 1024 / 500; }
+/* itch serves a small cover in the grid; this swaps in the full-size SkyGuard image */
+#wrapper .game_cell[data-game_id="2548011"] .game_thumb a {
+  background: url(https://img.itch.zone/aW1nLzE1MTk4MzI3LnBuZw==/original/UcuUbP.png) center / cover no-repeat;
+}
+#wrapper .game_cell[data-game_id="2548011"] .game_thumb img { opacity: 0; }
+#wrapper .game_cell[data-game_id="2548011"] .game_thumb::before { bottom: 22px; font-size: 14px; }
+#wrapper .game_cell[data-game_id="2548011"]:hover .game_thumb a,
+#wrapper .game_cell[data-game_id="2548011"]:focus-within .game_thumb a { animation: z-glitch .5s steps(1) 1 both; }
+#wrapper .game_cell[data-game_id="2548011"] .game_cell_data {
+  grid-template-rows: none;
+  align-content: center;
+  padding: 6px 8px 6px 0;
+}
+#wrapper .game_cell[data-game_id="2548011"] .game_cell_data::before {
+  content: "Featured";
+  grid-column: 1 / -1;
+  margin-bottom: 12px;
+  font: 10px var(--z-pixel);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--z-coin);
+  text-shadow: 0 0 10px rgba(255, 213, 74, .6);
+}
+#wrapper .game_cell[data-game_id="2548011"] .game_title a { font-size: clamp(22px, 3vw, 32px); }
+#wrapper .game_cell[data-game_id="2548011"] .game_text { font-size: 17px; }
+#wrapper .game_cell[data-game_id="2548011"] .game_genre,
+#wrapper .game_cell[data-game_id="2548011"] .game_platform { grid-row: 4; }
+/* the Download APK button, drawn with CSS; the whole card is the link */
+#wrapper .game_cell[data-game_id="2548011"] .game_cell_data::after {
+  content: "Download APK";
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 20px;
+  padding: 13px 18px 11px;
+  border-radius: 999px;
+  font: 10px var(--z-pixel);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #04201a;
+  background: var(--z-accent);
+  box-shadow: 0 5px 0 #1f8a5c;
+  transition: translate .15s, box-shadow .15s, filter .15s;
+}
+#wrapper .game_cell[data-game_id="2548011"]:hover .game_cell_data::after,
+#wrapper .game_cell[data-game_id="2548011"]:focus-within .game_cell_data::after {
+  translate: 0 -3px;
+  filter: brightness(1.08);
+  box-shadow: 0 8px 0 #1f8a5c, 0 0 26px rgba(61, 220, 151, .6);
+}
+
+
+/* ---------- "Next game loading" card in the empty slot ----------
+   Delete this block when a new game fills the row. */
+#wrapper .user_game_grid::after {
+  content: "Next game\A loading";
+  white-space: pre;
+  display: grid;
+  place-content: center;
+  min-height: 200px;
+  padding-bottom: 36px;
+  text-align: center;
+  border: 2px dashed var(--z-edge-2);
+  border-radius: 16px;
+  color: var(--z-dim);
+  font: 11px/2.1 var(--z-pixel);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: repeating-linear-gradient(90deg, var(--z-cyan) 0 10px, transparent 10px 14px) left 28px bottom 46px / 0 10px no-repeat;
+  animation: z-load 4.5s steps(10) infinite;
+}
+@keyframes z-load { to { background-size: calc(100% - 56px) 10px; } }
+
+
+/* ---------- Footer ---------- */
+#wrapper .footer { margin-top: 56px; border-color: var(--z-edge); }
+#wrapper .footer a { color: var(--z-dim); }
+
+
+/* ---------- Tablets and phones ---------- */
+@media (max-width: 720px) {
+  #wrapper .user_game_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #wrapper .game_cell[data-game_id="2548011"] { display: flex; padding: 10px 10px 16px; }
+  #wrapper .game_cell[data-game_id="2548011"] .game_cell_data { padding: 14px 4px 0; }
+}
+@media (max-width: 480px) {
+  #wrapper .user_game_grid { grid-template-columns: minmax(0, 1fr); }
+  #wrapper .text_header h1 { padding: 10px 16px 4px; }
+  #wrapper .custom-hud { gap: 20px; padding: 14px 16px; }
+  #wrapper .custom-bio { font-size: 18px; }
+  #wrapper .game_column::before { background: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #wrapper,
+  #wrapper *,
+  #wrapper *::before,
+  #wrapper *::after { animation: none !important; transition: none !important; }
+}
