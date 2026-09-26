@@ -3,7 +3,8 @@
    https://github.com/SebasKoria/itch-theme
 
    itch loads this file from its Custom CSS box with a single line:
-     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@main/zirok.css);
+     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@main/zirok.css?v=2);
+   (bump ?v= after each change so browsers skip their cached copy)
 
    It expects these settings in itch's theme editor:
      BG #0b0a14 · Text #f3f1fb · Link #4de3f5 · Font: Chakra Petch
@@ -74,7 +75,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 55% 85% at 50% 0%, rgba(255, 79, 176, .2), rgba(150, 80, 255, .1) 45%, transparent 75%);
+  background: radial-gradient(ellipse 55% 90% at 50% 0%, rgba(255, 79, 176, .3), rgba(150, 80, 255, .16) 45%, transparent 75%);
   animation: z-breathe 6s ease-in-out infinite alternate;
 }
 @keyframes z-breathe { from { opacity: .65; } to { opacity: 1; } }

@@ -19,7 +19,7 @@ itch limits the Custom CSS box to 5120 characters, so the full stylesheet lives 
 **Custom CSS** (just this line):
 
 ```css
-@import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@main/zirok.css);
+@import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@main/zirok.css?v=2);
 ```
 
 **Profile content** (HTML mode): paste [`profile.html`](profile.html).
@@ -27,8 +27,9 @@ itch limits the Custom CSS box to 5120 characters, so the full stylesheet lives 
 ## Updating
 
 1. Edit `zirok.css` and push to `main`.
-2. jsDelivr caches the file for up to 12 hours. To see the change right away, open:
+2. jsDelivr caches the file for up to 12 hours. Clear its copy by opening:
    https://purge.jsdelivr.net/gh/SebasKoria/itch-theme@main/zirok.css
+3. Browsers keep their own copy for up to 7 days, so bump the number at the end of the `@import` line on itch (`?v=2` → `?v=3`) and save the theme.
 
 ## Things to update by hand
 
