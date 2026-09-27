@@ -6,3 +6,6 @@ This repository is public only so its files can be served to zirok.itch.io.
 You may view the files here, but you may not copy, modify, redistribute, or
 use any part of them (including on other itch.io pages or websites) without
 prior written permission from the copyright holder.
+
+Third-party files keep their own licenses: the DejaVu fonts in games/*/fonts/
+are distributed under the license in DejaVu-LICENSE.txt next to them.

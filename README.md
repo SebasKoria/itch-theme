@@ -41,3 +41,19 @@ The `@import` points to a tagged version, so nothing gets stuck in a cache.
 - The numbers in the scoreboard (`profile.html`) when you publish a game.
 - The "Next game loading" card fills the empty slot in the grid. Delete that block in `zirok.css` when a new game fills the row.
 - New games get the cyan accent. Add a line with the game's id next to the other per-game colors to give it its own.
+
+## SkyGuard page
+
+Files live in [`games/skyguard/`](games/skyguard/). On the SkyGuard page on itch:
+
+**Edit theme**: set **BG** to `#03170e`.
+
+**Custom CSS** (just this line):
+
+```css
+@import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.1.0/games/skyguard/skyguard.css);
+```
+
+**Description** (HTML mode): paste [`games/skyguard/skyguard.html`](games/skyguard/skyguard.html).
+
+The banner stays the uploaded image; the CSS draws the live version on top of it from `banner/`.
