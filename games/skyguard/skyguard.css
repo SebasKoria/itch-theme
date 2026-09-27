@@ -3,7 +3,7 @@
    https://github.com/SebasKoria/itch-theme
 
    Loaded from the game's Custom CSS box with one line:
-     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.1.0/games/skyguard/skyguard.css);
+     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.1.1/games/skyguard/skyguard.css);
    Description HTML: games/skyguard/skyguard.html
    ===================================================================== */
 
@@ -211,10 +211,10 @@
   -webkit-mask: var(--icon) center / contain no-repeat;
   mask: var(--icon) center / contain no-repeat;
 }
-#wrapper .custom-freeze .custom-icon { --icon: url(icons/FreezeIcon.png); }
-#wrapper .custom-slow .custom-icon { --icon: url(icons/SlowDownIcon.png); }
-#wrapper .custom-immortal .custom-icon { --icon: url(icons/PlaneIcon.png); }
-#wrapper .custom-life .custom-icon { --icon: url(icons/HeartIcon.png); }
+#wrapper .custom-freeze .custom-icon { --icon: url(icons/FreezeIcon-flat.png); }
+#wrapper .custom-slow .custom-icon { --icon: url(icons/SlowDownIcon-flat.png); }
+#wrapper .custom-immortal .custom-icon { --icon: url(icons/PlaneIcon-flat.png); }
+#wrapper .custom-life .custom-icon { --icon: url(icons/HeartIcon-flat.png); }
 #wrapper .custom-strip > div { padding: 9px 14px 8px; }
 #wrapper .custom-strip b { display: block; font: 700 14px var(--v-mono); letter-spacing: .04em; text-transform: uppercase; color: inherit; }
 #wrapper .custom-strip p { margin: 2px 0 0; font-size: 13px; line-height: 1.45; color: inherit; opacity: .8; }
@@ -408,6 +408,35 @@
 #wrapper .upload_name .name { flex: none; overflow: visible; text-overflow: clip; }
 #wrapper .toggle_info_btn::after { content: none; }
 #wrapper .screenshot_list img { display: block; width: 100%; height: auto; }
+
+/* departures board: every field is a row of split-flap tiles, the button sits below */
+#wrapper .upload_list_widget { margin: 0; padding: 0; }
+#wrapper .uploads .upload { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin: 0; padding: 0; }
+#wrapper .uploads .upload .info_column { order: 1; flex: none; width: 100%; margin: 0; padding: 0; }
+#wrapper .uploads .upload .download_btn { order: 2; margin: 0; }
+#wrapper .uploads .upload_name { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 0; padding: 0; }
+#wrapper .uploads .upload_name .name,
+#wrapper .uploads .upload_name .file_size,
+#wrapper .uploads .upload_name .download_platforms,
+#wrapper .uploads .upload_name::after {
+  --tile: calc(1ch + .25em);
+  display: inline-block;
+  margin: 0;
+  padding: 7px 0 7px .06em;
+  opacity: 1;
+  font: 700 13px/1 var(--v-mono);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: #f1efe6;
+  background:
+    linear-gradient(transparent calc(50% - .5px), rgba(0, 0, 0, .75) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)),
+    repeating-linear-gradient(90deg, #1d2120 0 calc(var(--tile) - 2px), transparent calc(var(--tile) - 2px) var(--tile));
+  background-position: 0 0, -.08em 0;
+}
+#wrapper .uploads .upload_name .file_size span { color: inherit; }
+#wrapper .uploads .download_platforms .icon { display: none; }
+#wrapper .uploads .download_platforms::after { content: "Android"; }
+#wrapper .uploads .upload_name::after { content: "Boarding"; color: #f0c24b; }
 
 @media (prefers-reduced-motion: reduce) {
   #wrapper, #wrapper *, #wrapper *::before, #wrapper *::after { animation: none !important; transition: none !important; }

@@ -51,7 +51,7 @@ Files live in [`games/skyguard/`](games/skyguard/). On the SkyGuard page on itch
 **Custom CSS** (just this line):
 
 ```css
-@import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.1.0/games/skyguard/skyguard.css);
+@import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.1.1/games/skyguard/skyguard.css);
 ```
 
 **Description** (HTML mode): paste [`games/skyguard/skyguard.html`](games/skyguard/skyguard.html).
