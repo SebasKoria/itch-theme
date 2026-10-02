@@ -67,7 +67,7 @@ Files live in [`games/dinopet/`](games/dinopet/). On the DinoPet page on itch:
 **Custom CSS** (just this line):
 
 ```css
-@import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.2.0/games/dinopet/dinopet.css);
+@import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.2.1/games/dinopet/dinopet.css);
 ```
 
 **Description** (HTML mode): paste [`games/dinopet/dinopet.html`](games/dinopet/dinopet.html).

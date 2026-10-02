@@ -3,7 +3,7 @@
    https://github.com/SebasKoria/itch-theme
 
    Loaded from the game's Custom CSS box with one line:
-     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.2.0/games/dinopet/dinopet.css);
+     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.2.1/games/dinopet/dinopet.css);
    Description HTML: games/dinopet/dinopet.html
 
    The game's own look: thick black outlines, flat colours, white
@@ -192,15 +192,15 @@
 #wrapper:has(.custom-room-wardrobe:hover) .custom-mood { animation: none; --dp-lvl: 100%; --dp-c: var(--green); }
 
 #wrapper .custom-coins { grid-auto-flow: column; gap: 6px; padding: 0 12px 0 14px; }
-#wrapper .custom-coins b { font: 400 26px/1 var(--title); font-size: 0; }
-#wrapper .custom-coins b::after {
+#wrapper .custom-coins strong { font: 400 26px/1 var(--title); font-size: 0; }
+#wrapper .custom-coins strong::after {
   font-size: 26px;
   counter-reset: dpcoins var(--dp-coins);
   content: counter(dpcoins);
 }
 #wrapper .custom-coins::after { content: ""; width: 26px; height: 26px; background: url(img/icon-coin.png) center / contain no-repeat; }
 /* playing a mini-game earns coins */
-#wrapper:has(.custom-games .custom-card:hover) .custom-coins b::after { animation: dp-earn 8s steps(102) forwards; }
+#wrapper:has(.custom-games .custom-card:hover) .custom-coins strong::after { animation: dp-earn 8s steps(102) forwards; }
 @keyframes dp-earn { to { --dp-coins: 999; } }
 
 #wrapper .custom-lead { margin: 0 0 6px; font-size: 20px; line-height: 1.45; font-weight: 500; }
@@ -214,7 +214,7 @@
   border-radius: 12px;
   rotate: -1.5deg;
 }
-#wrapper .custom-h span { color: var(--green); }
+#wrapper .custom-h .custom-hl { color: var(--green); }
 
 /* cards */
 #wrapper .custom-rooms,
@@ -234,15 +234,15 @@
   font-size: 0;
   background: var(--pic) center / cover no-repeat;
 }
-#wrapper .custom-card b { display: block; padding: 12px 14px 0; font: 400 22px/1.15 var(--title); }
+#wrapper .custom-card strong { display: block; padding: 12px 14px 0; font: 400 22px/1.15 var(--title); }
 #wrapper .custom-card p { margin: 4px 14px 14px; font-size: 15px; line-height: 1.4; }
 
 #wrapper .custom-rooms .custom-pic { aspect-ratio: 305 / 230; border-bottom: 4px solid var(--ink); }
-#wrapper .custom-rooms b { text-align: center; }
-#wrapper .custom-rooms b::before,
-#wrapper .custom-rooms b::after { font-size: .7em; vertical-align: .15em; }
-#wrapper .custom-rooms b::before { content: "\25C0  "; }
-#wrapper .custom-rooms b::after { content: "  \25B6"; }
+#wrapper .custom-rooms strong { text-align: center; }
+#wrapper .custom-rooms strong::before,
+#wrapper .custom-rooms strong::after { font-size: .7em; vertical-align: .15em; }
+#wrapper .custom-rooms strong::before { content: "\25C0  "; }
+#wrapper .custom-rooms strong::after { content: "  \25B6"; }
 #wrapper .custom-room-bath .custom-pic { --pic: url(img/room-bath.webp); }
 #wrapper .custom-room-kitchen .custom-pic { --pic: url(img/room-kitchen.webp); }
 #wrapper .custom-room-bed .custom-pic { --pic: url(img/room-bed.webp); }
@@ -389,7 +389,7 @@
 @media (max-width: 420px) {
   #wrapper .custom-meter { width: 52px; height: 52px; }
   #wrapper .custom-coins { height: 52px; padding: 0 10px; }
-  #wrapper .custom-coins b::after { font-size: 22px; }
+  #wrapper .custom-coins strong::after { font-size: 22px; }
   #wrapper .custom-dinotip { margin-right: 6px; padding: 16px 14px; }
 }
 
