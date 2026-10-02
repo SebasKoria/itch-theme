@@ -1,0 +1,400 @@
+/* =====================================================================
+   DinoPet · zirok.itch.io/dinopet
+   https://github.com/SebasKoria/itch-theme
+
+   Loaded from the game's Custom CSS box with one line:
+     @import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.2.0/games/dinopet/dinopet.css);
+   Description HTML: games/dinopet/dinopet.html
+
+   The game's own look: thick black outlines, flat colours, white
+   sticker buttons with a hard shadow, one colour per room.
+   ===================================================================== */
+
+@font-face { font-family: "DP Title"; font-weight: 400; font-display: swap; src: url(fonts/LilitaOne.woff2) format("woff2"); }
+@font-face { font-family: "DP Round"; font-weight: 500 700; font-display: swap; src: url(fonts/Fredoka.woff2) format("woff2"); }
+
+@property --dp-lvl { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
+@property --dp-c { syntax: "<color>"; inherits: false; initial-value: #36d26b; }
+@property --dp-coins { syntax: "<integer>"; inherits: false; initial-value: 489; }
+
+#wrapper {
+  --ink: #141414;
+  --paper: #fffaf0;
+  --green: #36d26b;
+  --gold: #ffd84a;
+  --pink: #c2186b;
+  --tip: #8fdcaa;
+  --tip-ink: #0f5a2a;
+  --title: "DP Title", "Lilita One", Impact, sans-serif;
+  --round: "DP Round", "Fredoka", "Trebuchet MS", sans-serif;
+  --banner: linear-gradient(160deg, #7a12d6, #ff2fa6);
+  /* the screenshots' own backdrop */
+  padding: 30px 0 40px;
+  background: linear-gradient(180deg, #4a6cff 0%, #a56be6 50%, #ff6ad5 100%);
+  color: var(--ink);
+}
+/* the banner takes the colour of the room you point at */
+#wrapper:has(.custom-room-bath:hover) { --banner: #12d6ea; }
+#wrapper:has(.custom-room-kitchen:hover) { --banner: #ff8f70; }
+#wrapper:has(.custom-room-bed:hover) { --banner: #7a3a72; }
+#wrapper:has(.custom-room-wardrobe:hover) { --banner: #ffab0f; }
+
+#wrapper .inner_column {
+  background: var(--paper);
+  border: 4px solid var(--ink);
+  border-radius: 28px;
+  box-shadow: 10px 10px 0 var(--ink);
+  overflow: hidden;
+  color: var(--ink);
+  font-family: var(--round);
+  font-size: 16px;
+}
+#wrapper a { color: var(--pink); }
+
+/* ---------- banner: drawn by the CSS, itch only gives us the <h1> ---------- */
+#wrapper #header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 280px;
+  padding: 34px 36px;
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 4px solid var(--ink);
+  background: var(--banner);
+  transition: background .3s;
+}
+/* the dino from the cover, breathing */
+#wrapper #header::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 3%;
+  bottom: -12%;
+  height: 108%;
+  aspect-ratio: 425 / 452;
+  background: url(banner/dino.png) center bottom / contain no-repeat;
+  filter: drop-shadow(0 6px 0 var(--ink));
+  transform-origin: 60% 100%;
+  animation: dp-breathe 3.2s ease-in-out infinite;
+}
+@keyframes dp-breathe { 50% { scale: 1.03; rotate: -1.5deg; } }
+#wrapper #header h1 {
+  display: block !important;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  max-width: 62%;
+  font: 400 clamp(56px, 11vw, 112px)/.95 var(--title);
+  letter-spacing: .01em;
+  color: #fff;
+  -webkit-text-stroke: 8px var(--ink);
+  paint-order: stroke fill;
+  text-shadow: 0 8px 0 var(--ink);
+  rotate: -3deg;
+  transform-origin: left;
+}
+#wrapper #header::after {
+  content: "Virtual pet · Android";
+  margin-top: 16px;
+  padding: 8px 14px 7px;
+  font: 600 16px/1 var(--round);
+  background: #fff;
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 0 4px 0 var(--ink);
+  rotate: 2deg;
+}
+
+/* ---------- sticker buttons ---------- */
+#wrapper .header_buy_row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin: 0;
+  padding: 14px 24px;
+  background: #fff;
+  border-bottom: 4px solid var(--ink);
+  font-weight: 600;
+}
+#wrapper .header_buy_row p, #wrapper .buy_row, #wrapper .button_message { margin: 0; }
+#wrapper .header_buy_row .buy_row { padding: 0; }
+#wrapper .button_message { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+#wrapper .button,
+#wrapper .button:hover,
+#wrapper .button:active {
+  display: inline-block;
+  height: auto;
+  padding: 10px 20px;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  background: var(--green);
+  color: var(--ink);
+  font: 700 18px/1.2 var(--round);
+  text-shadow: none;
+  text-decoration: none;
+  box-shadow: 0 5px 0 var(--ink);
+  transition: translate .1s, box-shadow .1s;
+}
+#wrapper .button:hover { translate: 0 -2px; box-shadow: 0 7px 0 var(--ink); }
+#wrapper .button:active { translate: 0 4px; box-shadow: 0 1px 0 var(--ink); }
+#wrapper .button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+#wrapper .buy_message .sub { color: var(--ink); font-weight: 600; opacity: 1; }
+
+/* ---------- description ---------- */
+#wrapper .formatted_description { font-size: 16px; line-height: 1.5; }
+
+/* the game's HUD: food, sleep, mood fill up like in the game; coins count up */
+#wrapper [class*="custom-"] { box-sizing: border-box; }
+#wrapper .custom-hud { display: flex; gap: 8px; margin: 0 0 20px; }
+#wrapper .custom-meter,
+#wrapper .custom-coins {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 58px;
+  border: 4px solid var(--ink);
+  border-radius: 13px;
+  box-shadow: 0 4px 0 var(--ink);
+  background: #fff;
+}
+#wrapper .custom-meter {
+  --dp-c: var(--green);
+  width: 58px;
+  font-size: 0;
+  background: linear-gradient(to top, var(--dp-c) var(--dp-lvl), #fff var(--dp-lvl));
+  transition: --dp-lvl .6s ease-out;
+}
+#wrapper .custom-meter::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  background: var(--icon) center / contain no-repeat;
+}
+#wrapper .custom-food { --icon: url(img/icon-food.png); animation: dp-drain 21s ease-in infinite; }
+#wrapper .custom-sleep { --icon: url(img/icon-sleep.png); animation: dp-drain 27s ease-in -9s infinite; }
+#wrapper .custom-mood { --icon: url(img/icon-mood.png); animation: dp-drain 17s ease-in -4s infinite; }
+@keyframes dp-drain {
+  0% { --dp-lvl: 100%; --dp-c: var(--green); }
+  55% { --dp-c: #ffe600; }
+  90% { --dp-lvl: 18%; --dp-c: #ff6b5c; }
+  94% { --dp-lvl: 18%; --dp-c: #ff6b5c; }
+  100% { --dp-lvl: 100%; --dp-c: var(--green); }
+}
+/* pointing at a room tops up what that room is for */
+#wrapper:has(.custom-room-kitchen:hover) .custom-food,
+#wrapper:has(.custom-room-bed:hover) .custom-sleep,
+#wrapper:has(.custom-room-bath:hover) .custom-mood,
+#wrapper:has(.custom-room-wardrobe:hover) .custom-mood { animation: none; --dp-lvl: 100%; --dp-c: var(--green); }
+
+#wrapper .custom-coins { grid-auto-flow: column; gap: 6px; padding: 0 12px 0 14px; }
+#wrapper .custom-coins b { font: 400 26px/1 var(--title); font-size: 0; }
+#wrapper .custom-coins b::after {
+  font-size: 26px;
+  counter-reset: dpcoins var(--dp-coins);
+  content: counter(dpcoins);
+}
+#wrapper .custom-coins::after { content: ""; width: 26px; height: 26px; background: url(img/icon-coin.png) center / contain no-repeat; }
+/* playing a mini-game earns coins */
+#wrapper:has(.custom-games .custom-card:hover) .custom-coins b::after { animation: dp-earn 8s steps(102) forwards; }
+@keyframes dp-earn { to { --dp-coins: 999; } }
+
+#wrapper .custom-lead { margin: 0 0 6px; font-size: 20px; line-height: 1.45; font-weight: 500; }
+#wrapper .custom-h {
+  display: inline-block;
+  margin: 34px 0 16px;
+  padding: 6px 16px 4px;
+  font: 400 28px/1.15 var(--title);
+  color: #fff;
+  background: var(--ink);
+  border-radius: 12px;
+  rotate: -1.5deg;
+}
+#wrapper .custom-h span { color: var(--green); }
+
+/* cards */
+#wrapper .custom-rooms,
+#wrapper .custom-games { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+#wrapper .custom-card {
+  overflow: hidden;
+  background: #fff;
+  border: 4px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: 0 6px 0 var(--ink);
+  transition: rotate .15s, translate .15s;
+}
+#wrapper .custom-card:nth-child(odd):hover { rotate: -1.5deg; translate: 0 -4px; }
+#wrapper .custom-card:nth-child(even):hover { rotate: 1.5deg; translate: 0 -4px; }
+#wrapper .custom-pic {
+  display: block;
+  font-size: 0;
+  background: var(--pic) center / cover no-repeat;
+}
+#wrapper .custom-card b { display: block; padding: 12px 14px 0; font: 400 22px/1.15 var(--title); }
+#wrapper .custom-card p { margin: 4px 14px 14px; font-size: 15px; line-height: 1.4; }
+
+#wrapper .custom-rooms .custom-pic { aspect-ratio: 305 / 230; border-bottom: 4px solid var(--ink); }
+#wrapper .custom-rooms b { text-align: center; }
+#wrapper .custom-rooms b::before,
+#wrapper .custom-rooms b::after { font-size: .7em; vertical-align: .15em; }
+#wrapper .custom-rooms b::before { content: "\25C0  "; }
+#wrapper .custom-rooms b::after { content: "  \25B6"; }
+#wrapper .custom-room-bath .custom-pic { --pic: url(img/room-bath.webp); }
+#wrapper .custom-room-kitchen .custom-pic { --pic: url(img/room-kitchen.webp); }
+#wrapper .custom-room-bed .custom-pic { --pic: url(img/room-bed.webp); }
+#wrapper .custom-room-wardrobe .custom-pic { --pic: url(img/room-wardrobe.webp); }
+
+#wrapper .custom-games .custom-card {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+}
+#wrapper .custom-games .custom-pic { grid-row: 1 / 4; min-height: 160px; border-right: 4px solid var(--ink); background-position: center top; }
+#wrapper .custom-game-catch .custom-pic { --pic: url(img/game-catch.webp); }
+#wrapper .custom-game-light .custom-pic { --pic: url(img/game-light.webp); }
+#wrapper .custom-game-memory .custom-pic { --pic: url(img/game-memory.webp); }
+#wrapper .custom-game-puzzle .custom-pic { --pic: url(img/game-puzzle.webp); }
+#wrapper .custom-coin {
+  justify-self: start;
+  margin: 0 14px 14px;
+  padding: 2px 10px;
+  font: 700 14px var(--round);
+  background: var(--gold);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+}
+
+/* the in-game Dino-Tip popup; the tips take turns */
+#wrapper .custom-dinotip {
+  margin: 36px 8px 0 0;
+  padding: 18px 22px 20px;
+  text-align: center;
+  background: var(--tip);
+  border: 4px solid var(--tip-ink);
+  border-radius: 6px;
+  box-shadow: 8px 8px 0 var(--tip-ink);
+}
+#wrapper .custom-dinotip p {
+  margin: 0;
+  color: #fff;
+  -webkit-text-stroke: 4px var(--tip-ink);
+  paint-order: stroke fill;
+}
+#wrapper .custom-dinotip .custom-dinotip-title { font: 700 30px/1.2 var(--round); -webkit-text-stroke-width: 5px; }
+#wrapper .custom-tips { display: grid; }
+#wrapper .custom-tips p {
+  grid-area: 1 / 1;
+  display: grid;
+  place-items: center;
+  min-height: 2.7em;
+  font: 600 20px/1.35 var(--round);
+  opacity: 0;
+  animation: dp-tip 16s infinite;
+}
+#wrapper .custom-tips p:nth-child(2) { animation-delay: 4s; }
+#wrapper .custom-tips p:nth-child(3) { animation-delay: 8s; }
+#wrapper .custom-tips p:nth-child(4) { animation-delay: 12s; }
+@keyframes dp-tip {
+  0% { opacity: 0; translate: 0 6px; }
+  3%, 22% { opacity: 1; translate: 0 0; }
+  25%, 100% { opacity: 0; translate: 0 -6px; }
+}
+#wrapper .custom-note {
+  margin: 28px 0 0;
+  padding: 12px 16px;
+  border: 3px dashed var(--ink);
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* ---------- itch's own blocks ---------- */
+#wrapper .more_information_toggle { margin-top: 26px; }
+#wrapper .toggle_info_btn {
+  display: inline-block;
+  padding: 6px 14px;
+  font: 700 15px var(--round);
+  color: var(--ink);
+  text-decoration: none;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 0 4px 0 var(--ink);
+}
+#wrapper .toggle_info_btn svg { fill: var(--ink) !important; }
+#wrapper .game_info_panel_widget { margin-top: 14px; padding: 6px 14px; background: #fff; border: 3px solid var(--ink); border-radius: 16px; }
+#wrapper .game_info_panel_widget table { width: 100%; }
+#wrapper .game_info_panel_widget td { padding: 7px 10px 7px 0; border-bottom: 2px solid #eee; font-size: 15px; }
+#wrapper .game_info_panel_widget tr:last-child td { border-bottom: 0; }
+#wrapper .game_info_panel_widget td:first-child { font-weight: 700; width: 8em; }
+
+/* download: a yellow sticker (itch keeps a 20px gutter in this column) */
+#wrapper #download { margin: 34px 20px 14px; font: 400 28px var(--title); }
+#wrapper .left_col > .buy_row { margin: 0 20px; }
+#wrapper .uploads {
+  margin: 22px 20px 0;
+  padding: 16px 18px;
+  background: #fff3a6;
+  border: 4px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: 0 6px 0 var(--ink);
+}
+#wrapper .uploads > p { margin: 0 0 10px; font-size: 15px; }
+#wrapper .upload_list_widget { margin: 0; }
+#wrapper .upload { margin: 0; padding: 0; border: 0; }
+#wrapper .upload_name { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+#wrapper .upload_name .name { font: 400 24px/1.2 var(--title); }
+#wrapper .upload_name .file_size { padding: 2px 10px; font: 700 14px var(--round); color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 999px; }
+#wrapper .upload_name .file_size span { color: inherit; }
+
+#wrapper .game_comments_widget > h2 { margin: 34px 20px 12px; font: 400 28px var(--title); }
+#wrapper .game_comments_widget .form_placeholder { padding: 12px 14px; border: 3px dashed var(--ink); border-radius: 14px; }
+#wrapper .community_post .post_grid { padding: 12px; background: #fff; border: 3px solid var(--ink); border-radius: 16px; }
+
+/* screenshots: stickers stuck on a little crooked */
+#wrapper .screenshot_list { display: grid; gap: 18px; padding-top: 4px; }
+#wrapper .screenshot_list a { display: block; margin: 0; }
+#wrapper .screenshot_list img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border: 4px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 0 6px 0 var(--ink);
+  transition: rotate .15s;
+}
+#wrapper .screenshot_list a:nth-child(odd) img { rotate: 1.2deg; }
+#wrapper .screenshot_list a:nth-child(even) img { rotate: -1.2deg; }
+#wrapper .screenshot_list a:hover img { rotate: 0deg; }
+
+#wrapper .footer { border-top: 4px solid var(--ink); font-family: var(--round); }
+
+/* ---------- small screens ---------- */
+@media (max-width: 760px) {
+  #wrapper { padding: 12px 0 24px; }
+  #wrapper .inner_column { margin: 0 10px; border-radius: 20px; box-shadow: 6px 6px 0 var(--ink); }
+  #wrapper #header { min-height: 220px; padding: 26px 20px; }
+  #wrapper #header::before { right: -22%; bottom: -8%; height: 96%; }
+  #wrapper #header h1 { max-width: none; -webkit-text-stroke-width: 6px; text-shadow: 0 6px 0 var(--ink); }
+  #wrapper .header_buy_row { padding: 12px 16px; }
+  #wrapper .custom-rooms, #wrapper .custom-games { grid-template-columns: minmax(0, 1fr); }
+  #wrapper .screenshot_list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  #wrapper .screenshot_list img { border-width: 3px; border-radius: 12px; box-shadow: 0 4px 0 var(--ink); }
+}
+@media (max-width: 420px) {
+  #wrapper .custom-meter { width: 52px; height: 52px; }
+  #wrapper .custom-coins { height: 52px; padding: 0 10px; }
+  #wrapper .custom-coins b::after { font-size: 22px; }
+  #wrapper .custom-dinotip { margin-right: 6px; padding: 16px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #wrapper, #wrapper *, #wrapper *::before, #wrapper *::after { animation: none !important; transition: none !important; }
+  #wrapper .custom-tips p { opacity: 0; }
+  #wrapper .custom-tips p:first-child { opacity: 1; }
+}

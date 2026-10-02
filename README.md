@@ -57,3 +57,21 @@ Files live in [`games/skyguard/`](games/skyguard/). On the SkyGuard page on itch
 **Description** (HTML mode): paste [`games/skyguard/skyguard.html`](games/skyguard/skyguard.html).
 
 The banner stays the uploaded image; the CSS draws the live version on top of it from `banner/`.
+
+## DinoPet page
+
+Files live in [`games/dinopet/`](games/dinopet/). On the DinoPet page on itch:
+
+**Edit theme**: set **BG** to `#4a6cff`.
+
+**Custom CSS** (just this line):
+
+```css
+@import url(https://cdn.jsdelivr.net/gh/SebasKoria/itch-theme@v2.2.0/games/dinopet/dinopet.css);
+```
+
+**Description** (HTML mode): paste [`games/dinopet/dinopet.html`](games/dinopet/dinopet.html).
+
+The page has no uploaded banner: the CSS draws it on top of itch's title, with the dino from `banner/dino.png` breathing on the right. Room and mini-game pictures in `img/` are crops of the screenshots; the HUD icons are cut out of the bathroom screenshot. Fonts are Lilita One and Fredoka (SIL OFL, licences in `fonts/`).
+
+Hover effects: a room paints the banner in its colour and tops up the meter it's for; a mini-game makes the coin counter go up.
